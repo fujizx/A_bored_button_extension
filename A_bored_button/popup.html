@@ -2,6 +2,7 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <link href="popup.css" rel="stylesheet" type="text/css"/>
     <script>
       fetch('urls.json')
         .then((response) => response.json())
@@ -12,6 +13,8 @@
   </head>
   <body>
     <h1>A Bored Button</h1>
-    <p>Click the button to open a random website.</p>
+    <button id="start">
+        Yes, I am bored.
+    </button>
   </body>
 </html>

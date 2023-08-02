@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="background.js"></script>
+  </head>
+  <body>
+    <script>
+      fetch('urls.json')
+        .then((response) => response.json())
+        .then((data) => {
+          chrome.storage.local.set({ urls: data });
+        });
+    </script>
+  </body>
+</html>
