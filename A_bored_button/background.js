@@ -8,7 +8,9 @@ async function loadUrls() {
 loadUrls();
 
 function getRandomItem(data) {
+  console.log('data.length=='+data.length);
   const randomIndex = Math.floor(Math.random() * data.length);
+  console.log('randomIndex=='+randomIndex);
   return data[randomIndex];
 }
 
