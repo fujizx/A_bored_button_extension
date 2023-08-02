@@ -21,16 +21,15 @@ async function getRandomWeb() {
   const item = getRandomItem(data);
   const url = item.url;
 
-  // 向内容脚本发送消息，请求在当前页面跳转，并传递 item.title
-  chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
-    if (tabs && tabs.length > 0) {
-      chrome.tabs.sendMessage(tabs[0].id, { command: 'navigate', url: url, title: item.title });
-    } else {
-      // 如果没有活动标签页，创建一个新的标签页并打开链接
-      chrome.tabs.create({ url: url }, function (tab) {
-        chrome.tabs.sendMessage(tab.id, { command: 'show_title', title: item.title });
-      });
-    }
+  // 在当前窗口打开新标签页，并等待标签页加载完成
+  chrome.tabs.create({ url: url, active: false }, function (tab) {
+    // 在标签页加载完成后，向content.js发送消息
+    chrome.tabs.onUpdated.addListener(function listener(tabId, changeInfo) {
+      if (tabId === tab.id && changeInfo.status === "complete") {
+        chrome.tabs.onUpdated.removeListener(listener);
+        chrome.tabs.sendMessage(tabId, { command: 'show_title', title: item.title });
+      }
+    });
   });
 }
 
@@ -40,4 +39,3 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     getRandomWeb();
   }
 });
-
