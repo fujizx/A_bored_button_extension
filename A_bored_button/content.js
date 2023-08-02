@@ -1,6 +1,6 @@
 // 监听来自background.js的消息
 chrome.runtime.onMessage.addListener(function (message, sender, sendResponse) {
-  if (message.command === 'navigate') {
+  if (message.command === 'show_title') {
     // 获取目标URL，并在当前页面跳转
     const url = message.url;
     window.location.href = url;
