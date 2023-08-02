@@ -1,7 +1,8 @@
 //load urls
+let data;
 async function loadUrls() {
   const response = await fetch('urls.json');
-  const data = await response.json();
+  data = await response.json();
 }
 
 loadUrls();
@@ -12,6 +13,10 @@ function getRandomItem(data) {
 }
 
 async function getRandomWeb(){
+    if (!data) {
+      // 如果 data 为空，则调用 loadUrls 来加载数据
+      await loadUrls();
+    }
     const item = getRandomItem(data);
     const url = item.url;
     const title = item.title;
