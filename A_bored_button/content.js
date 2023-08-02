@@ -1,9 +1,12 @@
 // 监听来自background.js的消息
 chrome.runtime.onMessage.addListener(function (message, sender, sendResponse) {
-  if (message.command === 'show_title') {
-    // 获取title，并在页面右上角显示
-    const title = message.title;
+  if (message.command === 'navigate') {
+    // 获取目标URL，并在当前页面跳转
+    const url = message.url;
+    window.location.href = url;
 
+    // 获取title，并在页面上创建显示标题的元素
+    const title = message.title;
     const titleDiv = document.createElement('div');
     titleDiv.textContent = title;
     titleDiv.style.position = 'fixed';
@@ -15,3 +18,4 @@ chrome.runtime.onMessage.addListener(function (message, sender, sendResponse) {
     document.body.appendChild(titleDiv);
   }
 });
+
