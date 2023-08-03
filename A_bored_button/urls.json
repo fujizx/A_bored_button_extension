@@ -118,5 +118,9 @@
     {
         "url": "http://drawing.garden/",
         "title": "Drawing your garden."
+    },
+    {
+        "url": "https://mrdoob.com/lab/javascript/checkbox_painter/",
+        "title": "Checkbox painter."
     }
 ]
