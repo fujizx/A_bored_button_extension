@@ -1,7 +1,7 @@
 {
     "manifest_version": 3,
     "name": "A bored button",
-    "version": "1.0.1",
+    "version": "1.0.3",
     "description": "Click the button to open a random boring website.",
     "background": {
       "service_worker": "background.js"
