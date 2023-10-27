@@ -190,5 +190,9 @@
     {
         "url": "http://edgecats.net/",
         "title": "Refresh with new cats."
+    },
+    {
+        "url": "https://isthat.ai/",
+        "title": "is that ai?"
     }
 ]
